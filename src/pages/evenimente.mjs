@@ -1,5 +1,5 @@
 import { site } from "../site.mjs";
-import { faqHtml, faqJsonLd, ctaBand, serviceJsonLd } from "../layout.mjs";
+import { faqJsonLd, faqSection, ctaBand, serviceJsonLd, pageHero, photo } from "../layout.mjs";
 
 const path = "catering-evenimente-corporate/";
 const faq = [
@@ -12,6 +12,7 @@ export default {
   path,
   title: `Catering pentru evenimente corporate în București | ${site.name}`,
   description: "Catering pentru evenimente corporate în București: bufet, finger food sau cină servită, cu personal și veselă incluse, de la 95 lei/persoană fără TVA.",
+  ogImage: "table",
   breadcrumbs: [{ name: "Evenimente corporate", path }],
   jsonLd: [
     serviceJsonLd({
@@ -26,16 +27,21 @@ export default {
     faqJsonLd(faq),
   ],
   body: (p, crumbs) => `
-    <div class="page-hero"><div class="wrap">
-      ${crumbs}
-      <span class="eyebrow">Evenimente de companie</span>
-      <h1>Catering pentru evenimente corporate</h1>
-      <p class="lead">Cateringul pentru un eveniment corporate costă între 95 și 180 de lei de persoană fără TVA, în funcție de format, și include meniul, personalul de servire, vesela și debarasarea — tu te ocupi doar de invitați.</p>
-      <div class="hero-actions"><a class="btn" href="${p}contact/?serviciu=eveniment">Cere ofertă pentru eveniment</a></div>
-    </div></div>
+${pageHero({
+  crumbs,
+  image: "table",
+  alt: "Masă lungă pregătită pentru o cină corporate, cu lumânări",
+  eyebrow: "Evenimente de companie",
+  title: "Catering pentru <em>evenimente corporate</em>",
+  lead: "Cateringul pentru un eveniment corporate costă între 95 și 180 de lei de persoană fără TVA, în funcție de format, și include meniul, personalul de servire, vesela și debarasarea — tu te ocupi doar de invitați.",
+  actions: `<a class="btn btn-light" href="${p}contact/">Cere ofertă pentru eveniment</a>`,
+})}
 
-    <section class="section-alt"><div class="wrap">
-      <div class="section-head"><h2>Formate de servire</h2></div>
+    <section><div class="wrap">
+      <div class="section-head split">
+        <div><span class="eyebrow">Formate</span><h2>Alegi formatul, <em>noi îl punem în scenă</em></h2></div>
+        <p>Prețuri pe persoană, fără TVA, cu personal, veselă și transport în București incluse.</p>
+      </div>
       <div class="table-scroll">
         <table>
           <thead><tr><th>Format</th><th>Potrivit pentru</th><th>Persoane</th><th>Preț orientativ</th></tr></thead>
@@ -47,22 +53,27 @@ export default {
           </tbody>
         </table>
       </div>
-      <p class="hint" style="margin-top:12px">Prețuri pe persoană, fără TVA, cu personal, veselă și transport în București incluse.</p>
     </div></section>
 
-    <section><div class="wrap">
-      <h2>Cum organizăm un eveniment</h2>
-      <ol class="steps grid grid-2">
+    <section style="padding-top:0"><div class="wrap">
+      <div class="gallery">
+        <figure>${photo("sauce", "Bucătar care toarnă sos peste o porție servită la masă", { sizes: "(max-width: 760px) 100vw, 45vw", max: 1600 })}</figure>
+        <figure>${photo("canapes", "Aperitive pentru cocktail corporate", { sizes: "(max-width: 760px) 50vw, 28vw", max: 800 })}</figure>
+        <figure>${photo("buffet", "Bufet cald cu vase de servire din inox", { sizes: "(max-width: 760px) 50vw, 28vw", max: 800 })}</figure>
+        <figure>${photo("candles", "Masă festivă cu lumânări și pahare", { sizes: "(max-width: 760px) 50vw, 28vw", max: 800 })}</figure>
+        <figure>${photo("bruschetta", "Bruschete pe platou de marmură", { sizes: "(max-width: 760px) 50vw, 28vw", max: 800 })}</figure>
+      </div>
+    </div></section>
+
+    <section class="section-dark"><div class="wrap">
+      <div class="section-head"><span class="eyebrow">Proces</span><h2>Cum organizăm <em>un eveniment</em></h2></div>
+      <ol class="steps">
         <li><h3>Brief de 15 minute</h3><p>Data, locația, numărul de invitați, bugetul și tonul evenimentului.</p></li>
         <li><h3>Propunere de meniu</h3><p>În 24 de ore, cu două variante de buget și planul de servire.</p></li>
         <li><h3>Degustare</h3><p>Gratuită pentru evenimentele de peste 50 de persoane.</p></li>
         <li><h3>Ziua evenimentului</h3><p>Coordonatorul nostru ajunge cu 2 ore înainte și rămâne până la debarasare.</p></li>
       </ol>
     </div></section>
-
-    <section class="section-alt"><div class="wrap">
-      <div class="section-head"><h2>Întrebări despre cateringul pentru evenimente</h2></div>
-      ${faqHtml(faq)}
-    </div></section>
-${ctaBand(p, "Ai o dată în minte?", "Verificăm disponibilitatea în aceeași zi. În lunile noiembrie–decembrie, rezervă cu cel puțin 3 săptămâni înainte.")}`,
+${faqSection(faq, "Despre cateringul pentru evenimente")}
+${ctaBand(p, "Ai deja <em>o dată</em> în minte?", "Verificăm disponibilitatea în aceeași zi. În noiembrie și decembrie, rezervă cu cel puțin trei săptămâni înainte.", "candles")}`,
 };

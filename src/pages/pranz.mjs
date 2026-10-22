@@ -1,5 +1,5 @@
 import { site } from "../site.mjs";
-import { faqHtml, faqJsonLd, ctaBand, serviceJsonLd } from "../layout.mjs";
+import { faqJsonLd, faqSection, ctaBand, serviceJsonLd, pageHero, photo } from "../layout.mjs";
 
 const path = "pranz-angajati/";
 const faq = [
@@ -12,6 +12,7 @@ export default {
   path,
   title: `Prânz pentru angajați — meniu zilnic livrat la birou, București | ${site.name}`,
   description: "Prânz livrat zilnic la birou în București: 3 variante pe zi, de la 35 lei/porție fără TVA, factură lunară pe firmă. Degustare gratuită pentru echipă.",
+  ogImage: "bowl",
   breadcrumbs: [{ name: "Prânz pentru angajați", path }],
   jsonLd: [
     serviceJsonLd({
@@ -26,36 +27,39 @@ export default {
     faqJsonLd(faq),
   ],
   body: (p, crumbs) => `
-    <div class="page-hero"><div class="wrap">
-      ${crumbs}
-      <span class="eyebrow">Abonament de prânz</span>
-      <h1>Prânz pentru angajați, livrat zilnic la birou</h1>
-      <p class="lead">Prânzul pentru angajați costă de la 35 lei pe porție fără TVA și ajunge la birou între 12:00 și 13:00, cu trei variante în fiecare zi și o singură factură lunară pentru firmă.</p>
-      <div class="hero-actions"><a class="btn" href="${p}contact/?serviciu=pranz">Cere degustare gratuită</a><a class="btn btn-ghost" href="${p}meniu/#pranz">Vezi meniul săptămânii</a></div>
-    </div></div>
+${pageHero({
+  crumbs,
+  image: "bowl",
+  alt: "Bol cu legume proaspete și ou, porție de prânz pentru birou",
+  eyebrow: "Abonament de prânz",
+  title: "Prânz pentru angajați, <em>livrat zilnic</em> la birou",
+  lead: "Prânzul pentru angajați costă de la 35 lei pe porție fără TVA și ajunge la birou între 12:00 și 13:00, cu trei variante în fiecare zi și o singură factură lunară pentru firmă.",
+  actions: `<a class="btn btn-light" href="${p}contact/">Cere degustare gratuită</a><a class="btn btn-ghost" href="${p}meniu/#pranz">Meniul săptămânii</a>`,
+})}
 
-    <section class="section-alt"><div class="wrap">
-      <div class="section-head"><h2>Două formule, preț fix pe porție</h2><p>Prețurile includ ambalajul, tacâmurile și livrarea în București pentru minimum 10 porții pe zi.</p></div>
+    <section><div class="wrap">
+      <div class="section-head split">
+        <div><span class="eyebrow">Formule</span><h2>Două formule, <em>preț fix</em> pe porție</h2></div>
+        <p>Prețurile includ ambalajul, tacâmurile și livrarea în București pentru minimum 10 porții pe zi.</p>
+      </div>
       <div class="grid grid-2">
-        <div class="card"><h3>Meniu standard</h3><p>Fel principal cu garnitură sau salată consistentă. Alegi zilnic între carne, pește/pasăre și vegetarian.</p><p class="price">35 lei / porție fără TVA</p></div>
-        <div class="card"><h3>Meniu complet</h3><p>Supă sau ciorbă, fel principal cu garnitură și desert sau fruct. Cel mai ales de echipele de peste 30 de persoane.</p><p class="price">45 lei / porție fără TVA</p></div>
+        <div class="package"><h3>Meniu standard</h3><p class="price">35 lei <small>/ porție, fără TVA</small></p><ul><li>Fel principal cu garnitură sau salată consistentă</li><li>Trei variante zilnic: carne, pește sau pasăre, vegetarian</li><li>400–450 g pe porție</li></ul><a class="btn btn-ghost" href="${p}contact/">Cere ofertă</a></div>
+        <div class="package featured"><span class="badge">Cel mai ales</span><h3>Meniu complet</h3><p class="price">45 lei <small>/ porție, fără TVA</small></p><ul><li>Supă sau ciorbă, 300 ml</li><li>Fel principal cu garnitură</li><li>Desert sau fruct de sezon</li></ul><a class="btn" href="${p}contact/">Cere ofertă</a></div>
       </div>
     </div></section>
 
-    <section><div class="wrap">
-      <div class="grid grid-2" style="gap:48px">
-        <div>
-          <h2>Ce primești</h2>
+    <section class="section-alt"><div class="wrap">
+      <div class="feature">
+        <div class="feature-media">${photo("salad", "Boluri cu salată, legume coapte și orez", { sizes: "(max-width: 860px) 100vw, 50vw", max: 1600 })}</div>
+        <div class="feature-body">
+          <span class="eyebrow">Ce primești</span>
+          <h3>Gândit pentru birou, nu pentru livrare la domiciliu</h3>
           <ul>
-            <li>Meniu nou în fiecare săptămână, trimis vinerea pentru săptămâna următoare</li>
-            <li>Gramaj fix: 400–450 g fel principal, 300 ml supă</li>
-            <li>Etichetă pe fiecare caserolă cu numele colegului, varianta și alergenii</li>
-            <li>Valori nutriționale disponibile pentru fiecare preparat</li>
-            <li>Factură lunară centralizată și raport de consum pe departamente</li>
+            <li>Meniu nou în fiecare săptămână, trimis vinerea</li>
+            <li>Etichetă pe fiecare caserolă: nume, variantă, alergeni</li>
+            <li>Valori nutriționale pentru fiecare preparat</li>
+            <li>Factură lunară și raport de consum pe departamente</li>
           </ul>
-        </div>
-        <div>
-          <h2>Program</h2>
           <table>
             <tr><th>Comandă</th><td>până la 16:00, în ziua lucrătoare anterioară</td></tr>
             <tr><th>Modificări</th><td>până la 10:00, în ziua livrării</td></tr>
@@ -65,10 +69,6 @@ export default {
         </div>
       </div>
     </div></section>
-
-    <section class="section-alt"><div class="wrap">
-      <div class="section-head"><h2>Întrebări despre prânzul pentru angajați</h2></div>
-      ${faqHtml(faq)}
-    </div></section>
-${ctaBand(p, "Testează prânzul cu echipa ta", "Trimitem gratuit 5 porții din meniul zilei, ca să știi exact ce primesc colegii înainte să semnezi.")}`,
+${faqSection(faq, "Despre prânzul pentru angajați")}
+${ctaBand(p, "Testează prânzul <em>cu echipa ta</em>", "Trimitem gratuit 5 porții din meniul zilei, ca să știi exact ce primesc colegii înainte să semnezi.", "plate")}`,
 };

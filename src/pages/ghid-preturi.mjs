@@ -1,5 +1,5 @@
 import { site } from "../site.mjs";
-import { faqJsonLd, ctaBand } from "../layout.mjs";
+import { faqJsonLd, ctaBand, pageHero } from "../layout.mjs";
 
 const path = "ghid/cat-costa-catering-pentru-firme/";
 const published = "2026-10-22";
@@ -14,6 +14,7 @@ export default {
   title: `Cât costă cateringul pentru firme în 2026? Prețuri reale pe porție | ${site.name}`,
   description: "Prețuri catering firme 2026 în București: prânz 30–50 lei/porție, coffee break 25–70 lei, evenimente 90–200 lei/persoană. Ce influențează costul.",
   ogType: "article",
+  ogImage: "boxes",
   breadcrumbs: [{ name: "Cât costă cateringul pentru firme", path }],
   jsonLd: [
     {
@@ -30,13 +31,15 @@ export default {
     faqJsonLd(faq),
   ],
   body: (p, crumbs) => `
-    <div class="page-hero"><div class="wrap prose">
-      ${crumbs}
-      <h1>Cât costă cateringul pentru firme în 2026?</h1>
-      <p class="meta">Actualizat la ${new Date(published).toLocaleDateString("ro-RO", { day: "numeric", month: "long", year: "numeric" })} · 5 minute de citit</p>
-    </div></div>
+${pageHero({
+  crumbs,
+  image: "boxes",
+  alt: "Cutii de catering cu sandvișuri și patiserie pentru birou",
+  eyebrow: "Ghid · " + new Date(published).toLocaleDateString("ro-RO", { day: "numeric", month: "long", year: "numeric" }) + " · 5 minute",
+  title: "Cât costă cateringul <em>pentru firme</em> în 2026?",
+})}
 
-    <section style="padding-top:0"><div class="wrap prose">
+    <section><div class="wrap prose">
       <p class="answer">${faq[0].a}</p>
 
       <h2>Cât costă prânzul zilnic pentru angajați?</h2>
@@ -76,5 +79,5 @@ export default {
 
       <p>Prețurile Platou pentru fiecare serviciu sunt pe pagina <a href="${p}meniu/">meniu și prețuri</a>.</p>
     </div></section>
-${ctaBand(p, "Vrei un preț exact pentru firma ta?", "Trimite numărul de persoane și formatul dorit; primești oferta cu tot inclus în aceeași zi.")}`,
+${ctaBand(p, "Vrei un preț exact <em>pentru firma ta</em>?", "Trimite numărul de persoane și formatul dorit; primești oferta cu tot inclus în aceeași zi.")}`,
 };

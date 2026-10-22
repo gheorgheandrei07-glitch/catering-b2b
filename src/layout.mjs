@@ -2,7 +2,47 @@ import { site, nav } from "./site.mjs";
 
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
-export const logoSvg = `<svg class="logo-mark" viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="17" fill="#1f4a34"/><path d="M8 21h20a10 10 0 0 0-20 0Z" fill="#faf6ef"/><rect x="6" y="22.5" width="24" height="2.4" rx="1.2" fill="#c2562b"/><circle cx="18" cy="10" r="1.6" fill="#faf6ef"/></svg>`;
+export const logoSvg = `<svg class="logo-mark" viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="17" fill="none" stroke="#b48f58" stroke-width="1"/><path d="M9 21.5h18a9 9 0 0 0-18 0Z" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M7 24.5h22" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><circle cx="18" cy="11" r="1.4" fill="#b48f58"/></svg>`;
+
+// Fotografii Unsplash (licență gratuită, uz comercial permis), servite de CDN-ul lor în AVIF/WebP la dimensiunea potrivită.
+export const photos = {
+  chef: "1763376360111-3597e5877517",
+  garnish: "1775497950071-965cf9e20b2f",
+  sauce: "1663530761401-15eefb544889",
+  bowl: "1626711934535-9749ea30dba8",
+  salad: "1667499823726-f2c6fc321b66",
+  coffee: "1515823662972-da6a2e4d3002",
+  pastry: "1528699633788-424224dc89b5",
+  table: "1536392706976-e486e2ba97af",
+  candles: "1562050344-f7ad946cee35",
+  bruschetta: "1761315414017-04c3906359d1",
+  canapes: "1771154136172-0633db70b7dc",
+  buffet: "1555244162-803834f70033",
+  boxes: "1672826979217-7156a305acf5",
+  salmon: "1467003909585-2f8a72700288",
+  plate: "1414235077428-338989a2e8c0",
+};
+
+export function photo(key, alt, { sizes = "100vw", eager = false, max = 2000 } = {}) {
+  const base = `https://images.unsplash.com/photo-${photos[key]}?auto=format&fit=crop&q=72`;
+  const widths = [480, 800, 1200, 1600, 2000].filter((w) => w <= max);
+  return `<img src="${base}&w=${widths.at(-1) >= 1200 ? 1200 : widths.at(-1)}" srcset="${widths.map((w) => `${base}&w=${w} ${w}w`).join(", ")}" sizes="${sizes}" alt="${esc(alt)}" width="1200" height="800" decoding="async"${eager ? ' fetchpriority="high"' : ' loading="lazy"'}>`;
+}
+
+// Antet cu fotografie pe fundal, folosit de toate paginile interioare.
+export function pageHero({ crumbs, eyebrow, title, lead, actions = "", image, alt }) {
+  return `
+    <header class="photo-hero">
+      ${photo(image, alt, { eager: true })}
+      <div class="wrap">
+        ${crumbs}
+        ${eyebrow ? `<span class="eyebrow">${eyebrow}</span>` : ""}
+        <h1>${title}</h1>
+        ${lead ? `<p class="lead">${lead}</p>` : ""}
+        ${actions ? `<div class="hero-actions">${actions}</div>` : ""}
+      </div>
+    </header>`;
+}
 
 // prefix = drumul relativ către rădăcina site-ului ("", "../", "../../") ca linkurile să meargă și pe subfolderul GitHub Pages.
 export function layout(page) {
@@ -28,7 +68,7 @@ export function layout(page) {
     crumbs.length > 1
       ? `<nav class="crumbs" aria-label="Breadcrumb">${crumbs
           .map((c, i) => (i === crumbs.length - 1 ? `<span aria-current="page">${c.name}</span>` : `<a href="${p}${c.path}">${c.name}</a>`))
-          .join(" / ")}</nav>`
+          .join(" &nbsp;/&nbsp; ")}</nav>`
       : "";
 
   return `<!doctype html>
@@ -45,13 +85,18 @@ export function layout(page) {
   <meta property="og:title" content="${esc(page.title)}">
   <meta property="og:description" content="${esc(page.description)}">
   <meta property="og:url" content="${canonical}">
-  <meta name="theme-color" content="#1f4a34">
+  <meta property="og:image" content="https://images.unsplash.com/photo-${photos[page.ogImage || "chef"]}?auto=format&fit=crop&w=1200&h=630&q=75">
+  <meta name="theme-color" content="#13110e">
   <link rel="icon" href="${p}assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700&display=swap">
   <link rel="stylesheet" href="${p}assets/style.css">
 ${graph.length ? `  <script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@graph": graph })}</script>\n` : ""}</head>
 <body>
   <a class="skip" href="#continut">Sari la conținut</a>
-  <header class="site-header">
+  <div class="site-header">
     <div class="wrap">
       <a class="logo" href="${p || "./"}">${logoSvg}<span>${site.name}<small>${site.tagline}</small></span></a>
       <nav class="nav" aria-label="Principal">
@@ -66,7 +111,7 @@ ${graph.length ? `  <script type="application/ld+json">${JSON.stringify({ "@cont
         </nav>
       </details>
     </div>
-  </header>
+  </div>
 
   <main id="continut">
 ${page.body(p, crumbsHtml)}
@@ -74,6 +119,7 @@ ${page.body(p, crumbsHtml)}
 
   <footer class="site-footer">
     <div class="wrap">
+      <p class="footer-brand">Mâncare bună, la ora stabilită, <em>pentru echipa ta.</em></p>
       <div class="footer-grid">
         <div>
           <h2>${site.name} — ${site.tagline}</h2>
@@ -105,7 +151,7 @@ ${page.body(p, crumbsHtml)}
           </ul>
         </div>
       </div>
-      <div class="footer-bottom">© ${new Date().getFullYear()} ${site.legalName}. Toate prețurile sunt fără TVA, pentru persoane juridice.</div>
+      <div class="footer-bottom"><span>© ${new Date().getFullYear()} ${site.legalName}</span><span>Prețuri fără TVA, pentru persoane juridice.</span></div>
     </div>
   </footer>
 </body>
@@ -121,6 +167,7 @@ export function businessJsonLd() {
     legalName: site.legalName,
     description: site.description,
     url: site.url,
+    image: `https://images.unsplash.com/photo-${photos.chef}?auto=format&fit=crop&w=1200&q=75`,
     telephone: site.phone,
     email: site.email,
     priceRange: "35–180 lei / persoană",
@@ -160,10 +207,21 @@ export function faqJsonLd(items) {
   };
 }
 
-export const ctaBand = (p, title = "Primești oferta în aceeași zi lucrătoare", text = "Spune-ne câte persoane, ce dată și ce buget ai. Răspundem cu un meniu și un preț final, fără costuri ascunse.") => `
-    <section><div class="wrap">
-      <div class="cta-band">
-        <div><h2>${title}</h2><p>${text}</p></div>
-        <a class="btn" href="${p}contact/">Cere ofertă</a>
-      </div>
+export function faqSection(items, title = "Întrebări frecvente") {
+  return `
+    <section class="section-alt"><div class="wrap faq-layout">
+      <div><span class="eyebrow">Întrebări</span><h2>${title}</h2></div>
+      ${faqHtml(items)}
     </div></section>`;
+}
+
+export const ctaBand = (p, title = "Primești oferta în <em>aceeași zi</em> lucrătoare", text = "Spune-ne câte persoane, ce dată și ce buget ai. Răspundem cu un meniu și un preț final, fără costuri ascunse.", image = "candles") => `
+    <section class="cta-photo">
+      ${photo(image, "")}
+      <div class="wrap">
+        <span class="eyebrow">Cere ofertă</span>
+        <h2>${title}</h2>
+        <p>${text}</p>
+        <a class="btn btn-light" href="${p}contact/">Cere ofertă</a>
+      </div>
+    </section>`;
