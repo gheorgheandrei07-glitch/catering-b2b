@@ -6,6 +6,7 @@ export const site = {
   tagline: "Catering pentru firme",
   // Adresa publică a site-ului. La mutarea pe domeniu propriu, schimbă doar aici și rulează `npm run build`.
   url: "https://mancarescu.ro/",
+  indexNowKey: "9e2795c55e2d1733239be4157ea7664f",
   city: "București",
   region: "București",
   phone: "+40 700 000 000", // PLACEHOLDER

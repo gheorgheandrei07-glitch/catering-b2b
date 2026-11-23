@@ -58,7 +58,16 @@ export function layout(page) {
     });
   }
   if (page.jsonLd) graph.push(...page.jsonLd);
-  if (page.path === "") graph.unshift(businessJsonLd());
+  if (page.path === "") {
+    graph.unshift(businessJsonLd(), {
+      "@type": "WebSite",
+      "@id": site.url + "#website",
+      url: site.url,
+      name: site.name,
+      inLanguage: "ro",
+      publisher: { "@id": site.url + "#business" },
+    });
+  }
 
   const navLinks = nav
     .map((n) => `<a href="${p}${n.href}"${n.href === page.path ? ' aria-current="page"' : ""}>${n.label}</a>`)
@@ -167,6 +176,7 @@ export function businessJsonLd() {
     legalName: site.legalName,
     description: site.description,
     url: site.url,
+    logo: site.url + "assets/favicon.svg",
     image: `https://images.unsplash.com/photo-${photos.chef}?auto=format&fit=crop&w=1200&q=75`,
     telephone: site.phone,
     email: site.email,

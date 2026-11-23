@@ -36,9 +36,15 @@ ${indexable.map((p) => `  <url><loc>${site.url}${p.path}</loc><lastmod>${today}<
 `
 );
 
-// Pe un subfolder github.io, robots.txt de aici nu e citit de motoare (contează doar cel de pe domeniul rădăcină);
-// devine activ automat când site-ul se mută pe domeniu propriu.
-await writeFile(join(out, "robots.txt"), `User-agent: *\nAllow: /\n\nSitemap: ${site.url}sitemap.xml\n`);
+// Crawlerele AI sunt permise explicit: vrem să fim citați de ChatGPT, Claude, Perplexity și Copilot.
+const aiBots = ["GPTBot", "OAI-SearchBot", "ChatGPT-User", "ClaudeBot", "Claude-SearchBot", "PerplexityBot", "Google-Extended", "Bingbot"];
+await writeFile(
+  join(out, "robots.txt"),
+  `User-agent: *\nAllow: /\n\n${aiBots.map((b) => `User-agent: ${b}\nAllow: /\n`).join("\n")}\nSitemap: ${site.url}sitemap.xml\n`
+);
+
+// IndexNow: fișierul-cheie trebuie să fie la rădăcina site-ului; `npm run indexnow` anunță paginile după fiecare publicare.
+await writeFile(join(out, `${site.indexNowKey}.txt`), site.indexNowKey);
 
 await writeFile(
   join(out, "llms.txt"),
@@ -67,6 +73,9 @@ ${indexable
 await writeFile(
   join(out, ".htaccess"),
   `RewriteEngine On
+# O singură variantă: fără www, pe HTTPS.
+RewriteCond %{HTTP_HOST} ^www\\.(.+)$ [NC]
+RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
 RewriteCond %{HTTPS} !=on
 RewriteCond %{HTTP:X-Forwarded-Proto} !https
 RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]

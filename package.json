@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "node build.mjs",
-    "preview": "npx --yes serve@14.2.4 docs -l 4322"
+    "preview": "npx --yes serve@14.2.4 docs -l 4322",
+    "indexnow": "node indexnow.mjs"
   }
 }
