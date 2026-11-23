@@ -12,6 +12,7 @@
   --line-dark: rgba(242, 235, 223, .16);
   --gold: #b48f58;
   --gold-light: #d6b98a;
+  --gold-text: #7f5d2e; /* auriu pentru text pe fundal deschis (contrast AA) */
   --wrap: 1240px;
   --serif: "Cormorant Garamond", "Iowan Old Style", Georgia, serif;
   --sans: "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
@@ -30,7 +31,7 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 500; line-height: 1.04; let
 h1 { font-size: clamp(2.9rem, 7vw, 5.6rem); }
 h2 { font-size: clamp(2.2rem, 4.6vw, 3.6rem); }
 h3 { font-size: 1.65rem; line-height: 1.15; }
-h1 em, h2 em { font-style: italic; color: var(--gold); }
+h1 em, h2 em { font-style: italic; color: var(--gold-text); }
 p { margin: 0 0 1.1em; }
 ul, ol { padding-left: 1.1em; }
 li { margin-bottom: .35em; }
@@ -40,7 +41,7 @@ strong { font-weight: 600; }
 .skip { position: absolute; left: -9999px; }
 .skip:focus { left: 12px; top: 12px; background: var(--surface); padding: 8px 12px; z-index: 20; }
 
-.eyebrow { display: inline-flex; align-items: center; gap: 14px; font-size: .72rem; font-weight: 600; letter-spacing: .28em; text-transform: uppercase; color: var(--gold); margin-bottom: 26px; }
+.eyebrow { display: inline-flex; align-items: center; gap: 14px; font-size: .72rem; font-weight: 600; letter-spacing: .28em; text-transform: uppercase; color: var(--gold-text); margin-bottom: 26px; }
 .eyebrow::before { content: ""; width: 38px; height: 1px; background: currentColor; }
 .lead { font-size: clamp(1.05rem, 1.5vw, 1.22rem); color: var(--muted); max-width: 36em; font-weight: 400; }
 .hint { font-size: .86rem; color: var(--muted); }
@@ -138,7 +139,7 @@ section { padding: clamp(72px, 10vw, 130px) 0; }
 .section-dark .card ul { color: var(--on-dark-muted); }
 .section-dark .card ul li { border-color: var(--line-dark); }
 .section-dark .card .price { color: var(--on-dark); }
-.num { display: block; font-family: var(--serif); font-style: italic; font-size: 1.1rem; color: var(--gold); margin-bottom: 14px; }
+.num { display: block; font-family: var(--serif); font-style: italic; font-size: 1.1rem; color: var(--gold-text); margin-bottom: 14px; }
 
 /* Packages */
 .package { background: var(--surface); border: 1px solid var(--line); padding: 40px 34px; display: flex; flex-direction: column; }
@@ -174,12 +175,12 @@ section { padding: clamp(72px, 10vw, 130px) 0; }
 
 /* Statement */
 .statement { font-family: var(--serif); font-size: clamp(1.9rem, 4vw, 3.3rem); line-height: 1.18; font-weight: 400; max-width: 22em; margin: 0; }
-.statement em { color: var(--gold); }
+.statement em { color: var(--gold-text); }
 
 /* Steps */
 .steps { counter-reset: step; list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
 .steps li { counter-increment: step; border-top: 1px solid var(--line); padding-top: 26px; margin: 0; }
-.steps li::before { content: "0" counter(step); display: block; font-family: var(--serif); font-style: italic; font-size: 2.6rem; line-height: 1; color: var(--gold); margin-bottom: 22px; }
+.steps li::before { content: "0" counter(step); display: block; font-family: var(--serif); font-style: italic; font-size: 2.6rem; line-height: 1; color: var(--gold-text); margin-bottom: 22px; }
 .steps h3 { font-size: 1.45rem; }
 .steps p { color: var(--muted); font-size: .96rem; margin: 0; }
 .section-dark .steps li { border-color: var(--line-dark); }
@@ -217,8 +218,8 @@ section { padding: clamp(72px, 10vw, 130px) 0; }
 .menu-list li { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; padding: 22px 0; border-bottom: 1px solid var(--line); margin: 0; }
 .menu-list .dish { font-family: var(--serif); font-size: 1.45rem; font-weight: 500; line-height: 1.2; }
 .menu-list .note { display: block; font-family: var(--sans); font-size: .9rem; color: var(--muted); margin-top: 6px; }
-.menu-list .p { white-space: nowrap; font-family: var(--serif); font-size: 1.35rem; color: var(--gold); }
-.tag { display: inline-block; font-family: var(--sans); font-size: .6rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; border: 1px solid var(--gold); color: var(--gold); padding: 3px 8px; margin-left: 10px; vertical-align: middle; }
+.menu-list .p { white-space: nowrap; font-family: var(--serif); font-size: 1.35rem; color: var(--gold-text); }
+.tag { display: inline-block; font-family: var(--sans); font-size: .6rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; border: 1px solid var(--gold-text); color: var(--gold-text); padding: 3px 8px; margin-left: 10px; vertical-align: middle; }
 .menu-block { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(32px, 6vw, 88px); align-items: start; }
 .menu-block .feature-media { aspect-ratio: 3 / 4; position: sticky; top: 24px; }
 @media (max-width: 860px) { .menu-block { grid-template-columns: 1fr; } .menu-block .feature-media { position: static; aspect-ratio: 16 / 9; } }
@@ -302,3 +303,7 @@ input:focus, select:focus, textarea:focus { outline: none; border-bottom-color: 
 body, h1, h2, h3 { font-variant-numeric: lining-nums; font-feature-settings: "lnum" 1; }
 h1 a, h2 a, h3 a { text-decoration: none; }
 .package.featured .price { color: var(--on-dark); }
+
+/* Pe fundal închis, auriul deschis are contrast suficient */
+.section-dark, .photo-hero, .cta-photo, .site-footer, .package.featured, .contact-aside { --gold-text: var(--gold-light); }
+.section-dark .section-head p { color: var(--on-dark-muted); }
