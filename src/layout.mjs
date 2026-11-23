@@ -1,4 +1,9 @@
 import { site, nav } from "./site.mjs";
+import { readFileSync } from "node:fs";
+import { createHash } from "node:crypto";
+
+// Versiunea CSS-ului se schimbă la fiecare modificare, ca browserele să nu folosească fișierul vechi din cache.
+const cssVersion = createHash("sha1").update(readFileSync(new URL("../assets/style.css", import.meta.url))).digest("hex").slice(0, 8);
 
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
@@ -102,7 +107,7 @@ export function layout(page) {
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700&display=swap"></noscript>
-  <link rel="stylesheet" href="${p}assets/style.css">
+  <link rel="stylesheet" href="${p}assets/style.css?v=${cssVersion}">
 ${graph.length ? `  <script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@graph": graph })}</script>\n` : ""}</head>
 <body>
   <a class="skip" href="#continut">Sari la conținut</a>
@@ -282,7 +287,7 @@ export function calculator(p) {
     <script>
 document.querySelectorAll("[data-calc]").forEach(function(f){var s=f.querySelector("select"),pe=f.elements.pers,z=f.elements.zile,dw=f.querySelector("[data-days]"),t=f.querySelector(".calc-total"),n=f.querySelector(".calc-note"),a=f.querySelector("a"),fmt=function(x){return x.toLocaleString("ro-RO")+" lei"};
 function run(){var o=s.selectedOptions[0],d=o.dataset,pr=+o.value,P=Math.max(1,Math.round(+pe.value||1)),D=Math.min(23,Math.max(1,Math.round(+z.value||1))),daily="daily" in d,tot=pr*P*(daily?D:1),min=+d.min;dw.hidden=!daily;
-t.textContent=("from" in d?"de la ":"")+fmt(tot);n.textContent=(daily?"pe lună, "+D+(D>19?" de":"")+" zile · ":"pe comandă · ")+pr+" lei de persoană, fără TVA"+(P<min?" · comanda minimă: "+min+" persoane":"");
+t.textContent=("from" in d?"de la ":"")+fmt(tot);n.textContent=(daily?"pe lună, "+(D===1?"1 zi":D+(D>19?" de":"")+" zile")+" · ":"pe comandă · ")+pr+" lei de persoană, fără TVA"+(P<min?" · comanda minimă: "+min+" persoane":"");
 a.href=a.dataset.base+"?"+new URLSearchParams({serviciu:d.s,persoane:P,detalii:"Estimare din calculator: "+d.name+", "+P+" persoane"+(daily?", "+D+" zile pe lună":"")+", "+("from" in d?"":"aproximativ ")+t.textContent+" fără TVA."})}
 f.addEventListener("input",run);run()});
     </script>`;
