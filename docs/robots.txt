@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://gheorgheandrei07-glitch.github.io/catering-b2b/sitemap.xml
+Sitemap: https://mancarescu.ro/sitemap.xml

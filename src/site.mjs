@@ -5,7 +5,7 @@ export const site = {
   legalName: "Platou Catering SRL", // PLACEHOLDER
   tagline: "Catering pentru firme",
   // Adresa publică a site-ului. La mutarea pe domeniu propriu, schimbă doar aici și rulează `npm run build`.
-  url: "https://gheorgheandrei07-glitch.github.io/catering-b2b/",
+  url: "https://mancarescu.ro/",
   city: "București",
   region: "București",
   phone: "+40 700 000 000", // PLACEHOLDER

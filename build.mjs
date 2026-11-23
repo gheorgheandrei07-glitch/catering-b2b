@@ -63,6 +63,18 @@ ${indexable
 `
 );
 
+// Pentru găzduirea cPanel (Apache): pagina 404 proprie și cache lung pentru CSS și favicon.
+await writeFile(
+  join(out, ".htaccess"),
+  `ErrorDocument 404 /404.html
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 7 days"
+  ExpiresByType image/svg+xml "access plus 30 days"
+</IfModule>
+`
+);
+
 // Fără Jekyll: GitHub Pages servește fișierele exact cum sunt.
 await writeFile(join(out, ".nojekyll"), "");
 
