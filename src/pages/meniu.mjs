@@ -45,7 +45,7 @@ const sections = [
 export default {
   path,
   title: `Meniu catering pentru firme și prețuri 2026 | ${site.name}`,
-  description: "Meniul și prețurile Platou pentru firme: prânz zilnic de la 35 lei, coffee break de la 28 lei, finger food de la 55 lei și evenimente de la 95 lei pe persoană, fără TVA.",
+  description: "Meniul și prețurile Mâncărescu pentru firme: prânz zilnic de la 35 lei, coffee break de la 28 lei, finger food de la 55 lei și evenimente de la 95 lei pe persoană, fără TVA.",
   ogImage: "bruschetta",
   breadcrumbs: [{ name: "Meniu și prețuri", path }],
   jsonLd: [
@@ -73,7 +73,7 @@ ${pageHero({
   alt: "Bruschete asortate pe un platou de marmură",
   eyebrow: "Meniu 2026",
   title: "Meniu și prețuri <em>pentru firme</em>",
-  lead: "Prețurile Platou pornesc de la 35 lei pe porție pentru prânz, 28 lei de persoană pentru coffee break și 95 lei de persoană pentru evenimente, fără TVA. Mai jos găsești exemple de meniu; oferta finală o primești personalizată.",
+  lead: "Prețurile Mâncărescu pornesc de la 35 lei pe porție pentru prânz, 28 lei de persoană pentru coffee break și 95 lei de persoană pentru evenimente, fără TVA. Mai jos găsești exemple de meniu; oferta finală o primești personalizată.",
 })}
 ${sections
   .map(

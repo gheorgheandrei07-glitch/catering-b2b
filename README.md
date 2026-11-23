@@ -1,4 +1,4 @@
-# Platou — site de catering B2B
+# Mâncărescu — site de catering B2B
 
 Site static, fără JavaScript, optimizat SEO, pentru o firmă de catering care vinde către companii (prânz pentru angajați, coffee break, evenimente corporate).
 

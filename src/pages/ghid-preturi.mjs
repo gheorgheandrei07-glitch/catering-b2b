@@ -77,7 +77,7 @@ ${pageHero({
       <h2>Este prânzul pentru angajați cheltuială deductibilă?</h2>
       <p>${faq[2].a}</p>
 
-      <p>Prețurile Platou pentru fiecare serviciu sunt pe pagina <a href="${p}meniu/">meniu și prețuri</a>.</p>
+      <p>Prețurile Mâncărescu pentru fiecare serviciu sunt pe pagina <a href="${p}meniu/">meniu și prețuri</a>.</p>
     </div></section>
 ${ctaBand(p, "Vrei un preț exact <em>pentru firma ta</em>?", "Trimite numărul de persoane și formatul dorit; primești oferta cu tot inclus în aceeași zi.")}`,
 };

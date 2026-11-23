@@ -63,10 +63,15 @@ ${indexable
 `
 );
 
-// Pentru găzduirea cPanel (Apache): pagina 404 proprie și cache lung pentru CSS și favicon.
+// Pentru găzduirea cPanel (Apache): redirect spre HTTPS, pagina 404 proprie și cache pentru CSS și favicon.
 await writeFile(
   join(out, ".htaccess"),
-  `ErrorDocument 404 /404.html
+  `RewriteEngine On
+RewriteCond %{HTTPS} !=on
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+ErrorDocument 404 /404.html
 <IfModule mod_expires.c>
   ExpiresActive On
   ExpiresByType text/css "access plus 7 days"

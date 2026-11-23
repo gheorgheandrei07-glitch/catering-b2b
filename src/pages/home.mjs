@@ -27,7 +27,7 @@ export default {
       <div class="wrap">
         <span class="eyebrow">Catering B2B · ${site.city} și Ilfov</span>
         <h1>Catering pentru firme în <em>${site.city}</em></h1>
-        <p class="lead">Platou livrează prânz zilnic pentru angajați, coffee break pentru ședințe și meniuri pentru evenimente corporate — gătite în aceeași dimineață, livrate la oră fixă, cu factură pe firmă.</p>
+        <p class="lead">Mâncărescu livrează prânz zilnic pentru angajați, coffee break pentru ședințe și meniuri pentru evenimente corporate — gătite în aceeași dimineață, livrate la oră fixă, cu factură pe firmă.</p>
         <div class="hero-actions">
           <a class="btn btn-light" href="${p}contact/">Cere ofertă</a>
           <a class="btn btn-ghost" href="${p}meniu/">Meniu și prețuri</a>
@@ -68,7 +68,7 @@ ${services
 
     <section class="section-dark"><div class="wrap">
       <div class="section-head split">
-        <div><span class="eyebrow">Standardul Platou</span><h2>De ce ne aleg <em>companiile</em></h2></div>
+        <div><span class="eyebrow">Standardul Mâncărescu</span><h2>De ce ne aleg <em>companiile</em></h2></div>
         <p>Cateringul de birou se judecă în detalii: ora la care ajunge mâncarea, cum arată pe masă și cât de simplă e factura.</p>
       </div>
       <div class="values">
