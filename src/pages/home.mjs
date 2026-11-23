@@ -1,5 +1,5 @@
 import { site } from "../site.mjs";
-import { faqJsonLd, faqSection, ctaBand, photo } from "../layout.mjs";
+import { faqJsonLd, faqSection, ctaBand, photo, calculator } from "../layout.mjs";
 
 const faq = [
   { q: "Care este comanda minimă?", a: "Pentru prânzul zilnic livrăm de la 10 porții pe zi, iar pentru coffee break și evenimente de la 15 persoane. Sub aceste cantități îți facem o ofertă separată, cu taxa de livrare inclusă." },
@@ -27,10 +27,10 @@ export default {
       <div class="wrap">
         <span class="eyebrow">Catering B2B · ${site.city} și Ilfov</span>
         <h1>Catering pentru firme în <em>${site.city}</em></h1>
-        <p class="lead">Mâncărescu livrează prânz zilnic pentru angajați, coffee break pentru ședințe și meniuri pentru evenimente corporate — gătite în aceeași dimineață, livrate la oră fixă, cu factură pe firmă.</p>
+        <p class="lead">Mâncărescu livrează prânz zilnic pentru angajați, coffee break pentru ședințe și meniuri pentru evenimente corporate — gătite în aceeași dimineață, livrate la oră fixă, cu factură pe firmă. Ne spui câte persoane ai și primești meniul și prețul final în aceeași zi lucrătoare.</p>
         <div class="hero-actions">
-          <a class="btn btn-light" href="${p}contact/">Cere ofertă</a>
-          <a class="btn btn-ghost" href="${p}meniu/">Meniu și prețuri</a>
+          <a class="btn btn-light" href="${p}contact/">Primește oferta azi</a>
+          <a class="btn btn-ghost" href="#calculator">Calculează costul</a>
         </div>
         <ul class="trust">
           <li><strong>35 lei</strong>prânz, de la, pe porție</li>
@@ -64,6 +64,18 @@ ${services
       </article>`
   )
   .join("")}
+    </div></section>
+
+    <section class="section-alt"><div class="wrap">
+      <div class="section-head split">
+        <div><span class="eyebrow">Pentru cine</span><h2>Mai puțin de organizat, <em>mai mult timp</em> pentru tine</h2></div>
+        <p>Cine comandă cateringul într-o firmă are de obicei și alte zece lucruri de făcut. Am construit serviciul ca să îți ia cât mai puțin timp.</p>
+      </div>
+      <div class="grid grid-3 pains">
+        <div class="card"><span class="num">Office manager</span><h3>„Nu vreau să adun comenzi în fiecare zi.”</h3><p>Trimiți numărul de porții pe variantă până la 16:00 sau colegii aleg singuri într-un formular comun. Primești o singură listă și o singură factură pe lună.</p><a class="link-arrow" href="${p}pranz-angajati/">Prânz pentru angajați →</a></div>
+        <div class="card"><span class="num">HR și beneficii</span><h3>„Vreau un beneficiu pe care echipa chiar îl folosește.”</h3><p>Trei variante pe zi, una mereu vegetariană, alergeni pe fiecare caserolă. Firma poate subvenționa o parte din porție, iar diferența o plătește angajatul.</p><a class="link-arrow" href="${p}pranz-angajati/">Cum funcționează →</a></div>
+        <div class="card"><span class="num">Evenimente și training-uri</span><h3>„Am nevoie să meargă din prima.”</h3><p>Coffee break aranjat cu 30 de minute înainte de pauză, iar la evenimente venim cu ospătari, veselă și un coordonator. Un singur interlocutor de la ofertă la factură.</p><a class="link-arrow" href="${p}catering-evenimente-corporate/">Evenimente corporate →</a></div>
+      </div>
     </div></section>
 
     <section class="section-dark"><div class="wrap">
@@ -106,7 +118,22 @@ ${services
       </ol>
     </div></section>
 
+${calculator(p)}
+
     <section><div class="wrap">
+      <div class="section-head split">
+        <div><span class="eyebrow">Fără risc</span><h2>Încerci înainte <em>să te angajezi</em></h2></div>
+        <p>Știm că schimbarea furnizorului de catering pare complicată. De aceea primul pas nu te costă nimic.</p>
+      </div>
+      <div class="grid grid-4 guarantees">
+        <div class="card"><h3>Degustare gratuită</h3><p>Pentru prânzul zilnic trimitem 5 porții din meniul zilei, ca să guste colegii înainte să semnezi.</p></div>
+        <div class="card"><h3>Plătești ce primești</h3><p>Modifici numărul de porții până la 10:00 în ziua livrării și plătești doar porțiile livrate.</p></div>
+        <div class="card"><h3>Livrare inclusă</h3><p>Livrarea este gratuită în București pentru comenzile de peste 500 lei fără TVA.</p></div>
+        <div class="card"><h3>Preț final în ofertă</h3><p>Oferta include meniul, livrarea și condițiile de plată. Fără costuri adăugate pe factură.</p></div>
+      </div>
+    </div></section>
+
+    <section style="padding-top:0"><div class="wrap">
       <div class="stats">
         <div><strong>1.200+</strong><span>porții livrate pe zi</span></div>
         <div><strong>60+</strong><span>companii client</span></div>

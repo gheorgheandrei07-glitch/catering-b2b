@@ -57,10 +57,10 @@
       <div class="wrap">
         <span class="eyebrow">Catering B2B · București și Ilfov</span>
         <h1>Catering pentru firme în <em>București</em></h1>
-        <p class="lead">Mâncărescu livrează prânz zilnic pentru angajați, coffee break pentru ședințe și meniuri pentru evenimente corporate — gătite în aceeași dimineață, livrate la oră fixă, cu factură pe firmă.</p>
+        <p class="lead">Mâncărescu livrează prânz zilnic pentru angajați, coffee break pentru ședințe și meniuri pentru evenimente corporate — gătite în aceeași dimineață, livrate la oră fixă, cu factură pe firmă. Ne spui câte persoane ai și primești meniul și prețul final în aceeași zi lucrătoare.</p>
         <div class="hero-actions">
-          <a class="btn btn-light" href="contact/">Cere ofertă</a>
-          <a class="btn btn-ghost" href="meniu/">Meniu și prețuri</a>
+          <a class="btn btn-light" href="contact/">Primește oferta azi</a>
+          <a class="btn btn-ghost" href="#calculator">Calculează costul</a>
         </div>
         <ul class="trust">
           <li><strong>35 lei</strong>prânz, de la, pe porție</li>
@@ -118,6 +118,18 @@
       </article>
     </div></section>
 
+    <section class="section-alt"><div class="wrap">
+      <div class="section-head split">
+        <div><span class="eyebrow">Pentru cine</span><h2>Mai puțin de organizat, <em>mai mult timp</em> pentru tine</h2></div>
+        <p>Cine comandă cateringul într-o firmă are de obicei și alte zece lucruri de făcut. Am construit serviciul ca să îți ia cât mai puțin timp.</p>
+      </div>
+      <div class="grid grid-3 pains">
+        <div class="card"><span class="num">Office manager</span><h3>„Nu vreau să adun comenzi în fiecare zi.”</h3><p>Trimiți numărul de porții pe variantă până la 16:00 sau colegii aleg singuri într-un formular comun. Primești o singură listă și o singură factură pe lună.</p><a class="link-arrow" href="pranz-angajati/">Prânz pentru angajați →</a></div>
+        <div class="card"><span class="num">HR și beneficii</span><h3>„Vreau un beneficiu pe care echipa chiar îl folosește.”</h3><p>Trei variante pe zi, una mereu vegetariană, alergeni pe fiecare caserolă. Firma poate subvenționa o parte din porție, iar diferența o plătește angajatul.</p><a class="link-arrow" href="pranz-angajati/">Cum funcționează →</a></div>
+        <div class="card"><span class="num">Evenimente și training-uri</span><h3>„Am nevoie să meargă din prima.”</h3><p>Coffee break aranjat cu 30 de minute înainte de pauză, iar la evenimente venim cu ospătari, veselă și un coordonator. Un singur interlocutor de la ofertă la factură.</p><a class="link-arrow" href="catering-evenimente-corporate/">Evenimente corporate →</a></div>
+      </div>
+    </div></section>
+
     <section class="section-dark"><div class="wrap">
       <div class="section-head split">
         <div><span class="eyebrow">Standardul Mâncărescu</span><h2>De ce ne aleg <em>companiile</em></h2></div>
@@ -158,7 +170,50 @@
       </ol>
     </div></section>
 
+
+    <section id="calculator" class="section-dark"><div class="wrap calc">
+      <div>
+        <span class="eyebrow">Calculator</span>
+        <h2>Cât te costă, <em>în zece secunde</em></h2>
+        <p>Alege formatul și numărul de persoane. Estimarea folosește prețurile de listă, fără TVA; oferta finală, cu meniul propus, o primești în aceeași zi lucrătoare.</p>
+        <ul class="calc-points">
+          <li>Livrare gratuită în București peste 500 lei fără TVA</li>
+          <li>Plătești doar porțiile livrate</li>
+          <li>Factură pe firmă, per livrare sau lunară</li>
+        </ul>
+      </div>
+      <form class="calc-form" data-calc onsubmit="return false">
+        <div><label for="calc-pachet">Ce comanzi</label><select id="calc-pachet" name="pachet"><optgroup label="Prânz pentru angajați"><option value="35" data-s="Prânz pentru angajați" data-name="Prânz — meniu standard" data-min="10" data-daily>Prânz — meniu standard · 35 lei</option><option value="45" data-s="Prânz pentru angajați" data-name="Prânz — meniu complet" data-min="10" data-daily>Prânz — meniu complet · 45 lei</option></optgroup><optgroup label="Coffee break"><option value="28" data-s="Coffee break" data-name="Coffee break Simplu" data-min="15">Coffee break Simplu · 28 lei</option><option value="42" data-s="Coffee break" data-name="Coffee break Business" data-min="15">Coffee break Business · 42 lei</option><option value="65" data-s="Coffee break" data-name="Coffee break Conferință" data-min="15">Coffee break Conferință · 65 lei</option></optgroup><optgroup label="Finger food"><option value="55" data-s="Finger food" data-name="Platou rece clasic" data-min="15">Platou rece clasic · 55 lei</option><option value="72" data-s="Finger food" data-name="Platou mixt cald-rece" data-min="15">Platou mixt cald-rece · 72 lei</option><option value="58" data-s="Finger food" data-name="Platou vegetarian" data-min="15">Platou vegetarian · 58 lei</option></optgroup><optgroup label="Eveniment corporate"><option value="95" data-s="Eveniment corporate" data-name="Bufet cald" data-min="20" data-from>Bufet cald · de la 95 lei</option><option value="85" data-s="Eveniment corporate" data-name="Grătar & street food" data-min="20" data-from>Grătar & street food · de la 85 lei</option><option value="140" data-s="Eveniment corporate" data-name="Cină servită la masă" data-min="20" data-from>Cină servită la masă · de la 140 lei</option></optgroup></select></div>
+        <div class="row">
+          <div><label for="calc-pers">Persoane</label><input id="calc-pers" name="pers" type="number" min="1" max="2000" value="20" inputmode="numeric"></div>
+          <div data-days><label for="calc-zile">Zile pe lună</label><input id="calc-zile" name="zile" type="number" min="1" max="23" value="21" inputmode="numeric"></div>
+        </div>
+        <output class="calc-result" for="calc-pachet calc-pers calc-zile" aria-live="polite"><span class="calc-total">14.700 lei</span><span class="calc-note">pe lună, 21 de zile · 35 lei de persoană, fără TVA</span></output>
+        <a class="btn btn-light" data-base="contact/" href="contact/">Cere oferta pentru această estimare</a>
+      </form>
+    </div></section>
+    <script>
+document.querySelectorAll("[data-calc]").forEach(function(f){var s=f.querySelector("select"),pe=f.elements.pers,z=f.elements.zile,dw=f.querySelector("[data-days]"),t=f.querySelector(".calc-total"),n=f.querySelector(".calc-note"),a=f.querySelector("a"),fmt=function(x){return x.toLocaleString("ro-RO")+" lei"};
+function run(){var o=s.selectedOptions[0],d=o.dataset,pr=+o.value,P=Math.max(1,Math.round(+pe.value||1)),D=Math.min(23,Math.max(1,Math.round(+z.value||1))),daily="daily" in d,tot=pr*P*(daily?D:1),min=+d.min;dw.hidden=!daily;
+t.textContent=("from" in d?"de la ":"")+fmt(tot);n.textContent=(daily?"pe lună, "+D+(D>19?" de":"")+" zile · ":"pe comandă · ")+pr+" lei de persoană, fără TVA"+(P<min?" · comanda minimă: "+min+" persoane":"");
+a.href=a.dataset.base+"?"+new URLSearchParams({serviciu:d.s,persoane:P,detalii:"Estimare din calculator: "+d.name+", "+P+" persoane"+(daily?", "+D+" zile pe lună":"")+", "+("from" in d?"":"aproximativ ")+t.textContent+" fără TVA."})}
+f.addEventListener("input",run);run()});
+    </script>
+
     <section><div class="wrap">
+      <div class="section-head split">
+        <div><span class="eyebrow">Fără risc</span><h2>Încerci înainte <em>să te angajezi</em></h2></div>
+        <p>Știm că schimbarea furnizorului de catering pare complicată. De aceea primul pas nu te costă nimic.</p>
+      </div>
+      <div class="grid grid-4 guarantees">
+        <div class="card"><h3>Degustare gratuită</h3><p>Pentru prânzul zilnic trimitem 5 porții din meniul zilei, ca să guste colegii înainte să semnezi.</p></div>
+        <div class="card"><h3>Plătești ce primești</h3><p>Modifici numărul de porții până la 10:00 în ziua livrării și plătești doar porțiile livrate.</p></div>
+        <div class="card"><h3>Livrare inclusă</h3><p>Livrarea este gratuită în București pentru comenzile de peste 500 lei fără TVA.</p></div>
+        <div class="card"><h3>Preț final în ofertă</h3><p>Oferta include meniul, livrarea și condițiile de plată. Fără costuri adăugate pe factură.</p></div>
+      </div>
+    </div></section>
+
+    <section style="padding-top:0"><div class="wrap">
       <div class="stats">
         <div><strong>1.200+</strong><span>porții livrate pe zi</span></div>
         <div><strong>60+</strong><span>companii client</span></div>
@@ -181,7 +236,10 @@
         <span class="eyebrow">Cere ofertă</span>
         <h2>Primești oferta în <em>aceeași zi</em> lucrătoare</h2>
         <p>Spune-ne câte persoane, ce dată și ce buget ai. Răspundem cu un meniu și un preț final, fără costuri ascunse.</p>
-        <a class="btn btn-light" href="contact/">Cere ofertă</a>
+        <div class="hero-actions" style="justify-content:center">
+          <a class="btn btn-light" href="contact/">Cere ofertă</a>
+          <a class="btn btn-ghost" href="#calculator">Calculează prețul</a>
+        </div>
       </div>
     </section>
   </main>
@@ -223,5 +281,10 @@
       <div class="footer-bottom"><span>© 2026 Mâncărescu Catering SRL</span><span>Prețuri fără TVA, pentru persoane juridice.</span></div>
     </div>
   </footer>
+
+  <div class="sticky-cta" aria-label="Acțiuni rapide">
+    <a href="#calculator">Calculează prețul</a>
+    <a class="primary" href="contact/">Cere ofertă</a>
+  </div>
 </body>
 </html>

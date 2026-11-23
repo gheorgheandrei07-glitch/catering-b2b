@@ -34,13 +34,13 @@ ${pageHero({
   eyebrow: "Abonament de prânz",
   title: "Prânz pentru angajați, <em>livrat zilnic</em> la birou",
   lead: "Prânzul pentru angajați costă de la 35 lei pe porție fără TVA și ajunge la birou între 12:00 și 13:00, cu trei variante în fiecare zi și o singură factură lunară pentru firmă.",
-  actions: `<a class="btn btn-light" href="${p}contact/">Cere degustare gratuită</a><a class="btn btn-ghost" href="${p}meniu/#pranz">Meniul săptămânii</a>`,
+  actions: `<a class="btn btn-light" href="${p}contact/?serviciu=Pr%C3%A2nz%20pentru%20angaja%C8%9Bi&amp;detalii=Vreau%20degustarea%20gratuit%C4%83%20pentru%205%20colegi.">Cere degustare gratuită</a><a class="btn btn-ghost" href="${p}#calculator">Calculează prețul</a>`,
 })}
 
     <section><div class="wrap">
       <div class="section-head split">
         <div><span class="eyebrow">Formule</span><h2>Două formule, <em>preț fix</em> pe porție</h2></div>
-        <p>Prețurile includ ambalajul, tacâmurile și livrarea în București pentru minimum 10 porții pe zi.</p>
+        <p>Prețurile includ ambalajul, tacâmurile și livrarea în București pentru minimum 10 porții pe zi. Exemplu: 20 de colegi, 21 de zile lucrătoare, meniu standard = 14.700 lei pe lună fără TVA, adică 35 lei de persoană pe zi.</p>
       </div>
       <div class="grid grid-2">
         <div class="package"><h3>Meniu standard</h3><p class="price">35 lei <small>/ porție, fără TVA</small></p><ul><li>Fel principal cu garnitură sau salată consistentă</li><li>Trei variante zilnic: carne, pește sau pasăre, vegetarian</li><li>400–450 g pe porție</li></ul><a class="btn btn-ghost" href="${p}contact/">Cere ofertă</a></div>

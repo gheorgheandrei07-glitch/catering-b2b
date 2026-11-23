@@ -34,7 +34,7 @@ ${pageHero({
   eyebrow: "Evenimente de companie",
   title: "Catering pentru <em>evenimente corporate</em>",
   lead: "Cateringul pentru un eveniment corporate costă între 95 și 180 de lei de persoană fără TVA, în funcție de format, și include meniul, personalul de servire, vesela și debarasarea — tu te ocupi doar de invitați.",
-  actions: `<a class="btn btn-light" href="${p}contact/">Cere ofertă pentru eveniment</a>`,
+  actions: `<a class="btn btn-light" href="${p}contact/?serviciu=Eveniment%20corporate">Cere ofertă pentru eveniment</a><a class="btn btn-ghost" href="${p}#calculator">Calculează prețul</a>`,
 })}
 
     <section><div class="wrap">

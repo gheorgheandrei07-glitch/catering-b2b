@@ -104,13 +104,45 @@
       <p class="hint">Toate preparatele sunt etichetate cu alergenii principali (Regulamentul UE 1169/2011). Lista completă de alergeni și valori nutriționale o trimitem odată cu oferta.</p>
     </div></section>
 
+    <section id="calculator" class="section-dark"><div class="wrap calc">
+      <div>
+        <span class="eyebrow">Calculator</span>
+        <h2>Cât te costă, <em>în zece secunde</em></h2>
+        <p>Alege formatul și numărul de persoane. Estimarea folosește prețurile de listă, fără TVA; oferta finală, cu meniul propus, o primești în aceeași zi lucrătoare.</p>
+        <ul class="calc-points">
+          <li>Livrare gratuită în București peste 500 lei fără TVA</li>
+          <li>Plătești doar porțiile livrate</li>
+          <li>Factură pe firmă, per livrare sau lunară</li>
+        </ul>
+      </div>
+      <form class="calc-form" data-calc onsubmit="return false">
+        <div><label for="calc-pachet">Ce comanzi</label><select id="calc-pachet" name="pachet"><optgroup label="Prânz pentru angajați"><option value="35" data-s="Prânz pentru angajați" data-name="Prânz — meniu standard" data-min="10" data-daily>Prânz — meniu standard · 35 lei</option><option value="45" data-s="Prânz pentru angajați" data-name="Prânz — meniu complet" data-min="10" data-daily>Prânz — meniu complet · 45 lei</option></optgroup><optgroup label="Coffee break"><option value="28" data-s="Coffee break" data-name="Coffee break Simplu" data-min="15">Coffee break Simplu · 28 lei</option><option value="42" data-s="Coffee break" data-name="Coffee break Business" data-min="15">Coffee break Business · 42 lei</option><option value="65" data-s="Coffee break" data-name="Coffee break Conferință" data-min="15">Coffee break Conferință · 65 lei</option></optgroup><optgroup label="Finger food"><option value="55" data-s="Finger food" data-name="Platou rece clasic" data-min="15">Platou rece clasic · 55 lei</option><option value="72" data-s="Finger food" data-name="Platou mixt cald-rece" data-min="15">Platou mixt cald-rece · 72 lei</option><option value="58" data-s="Finger food" data-name="Platou vegetarian" data-min="15">Platou vegetarian · 58 lei</option></optgroup><optgroup label="Eveniment corporate"><option value="95" data-s="Eveniment corporate" data-name="Bufet cald" data-min="20" data-from>Bufet cald · de la 95 lei</option><option value="85" data-s="Eveniment corporate" data-name="Grătar & street food" data-min="20" data-from>Grătar & street food · de la 85 lei</option><option value="140" data-s="Eveniment corporate" data-name="Cină servită la masă" data-min="20" data-from>Cină servită la masă · de la 140 lei</option></optgroup></select></div>
+        <div class="row">
+          <div><label for="calc-pers">Persoane</label><input id="calc-pers" name="pers" type="number" min="1" max="2000" value="20" inputmode="numeric"></div>
+          <div data-days><label for="calc-zile">Zile pe lună</label><input id="calc-zile" name="zile" type="number" min="1" max="23" value="21" inputmode="numeric"></div>
+        </div>
+        <output class="calc-result" for="calc-pachet calc-pers calc-zile" aria-live="polite"><span class="calc-total">14.700 lei</span><span class="calc-note">pe lună, 21 de zile · 35 lei de persoană, fără TVA</span></output>
+        <a class="btn btn-light" data-base="../contact/" href="../contact/">Cere oferta pentru această estimare</a>
+      </form>
+    </div></section>
+    <script>
+document.querySelectorAll("[data-calc]").forEach(function(f){var s=f.querySelector("select"),pe=f.elements.pers,z=f.elements.zile,dw=f.querySelector("[data-days]"),t=f.querySelector(".calc-total"),n=f.querySelector(".calc-note"),a=f.querySelector("a"),fmt=function(x){return x.toLocaleString("ro-RO")+" lei"};
+function run(){var o=s.selectedOptions[0],d=o.dataset,pr=+o.value,P=Math.max(1,Math.round(+pe.value||1)),D=Math.min(23,Math.max(1,Math.round(+z.value||1))),daily="daily" in d,tot=pr*P*(daily?D:1),min=+d.min;dw.hidden=!daily;
+t.textContent=("from" in d?"de la ":"")+fmt(tot);n.textContent=(daily?"pe lună, "+D+(D>19?" de":"")+" zile · ":"pe comandă · ")+pr+" lei de persoană, fără TVA"+(P<min?" · comanda minimă: "+min+" persoane":"");
+a.href=a.dataset.base+"?"+new URLSearchParams({serviciu:d.s,persoane:P,detalii:"Estimare din calculator: "+d.name+", "+P+" persoane"+(daily?", "+D+" zile pe lună":"")+", "+("from" in d?"":"aproximativ ")+t.textContent+" fără TVA."})}
+f.addEventListener("input",run);run()});
+    </script>
+
     <section class="cta-photo">
       <img src="https://images.unsplash.com/photo-1775497950071-965cf9e20b2f?auto=format&fit=crop&q=72&w=1200" srcset="https://images.unsplash.com/photo-1775497950071-965cf9e20b2f?auto=format&fit=crop&q=72&w=480 480w, https://images.unsplash.com/photo-1775497950071-965cf9e20b2f?auto=format&fit=crop&q=72&w=800 800w, https://images.unsplash.com/photo-1775497950071-965cf9e20b2f?auto=format&fit=crop&q=72&w=1200 1200w, https://images.unsplash.com/photo-1775497950071-965cf9e20b2f?auto=format&fit=crop&q=72&w=1600 1600w, https://images.unsplash.com/photo-1775497950071-965cf9e20b2f?auto=format&fit=crop&q=72&w=2000 2000w" sizes="100vw" alt="" width="1200" height="800" decoding="async" loading="lazy">
       <div class="wrap">
         <span class="eyebrow">Cere ofertă</span>
         <h2>Vrei un meniu <em>adaptat echipei</em> tale?</h2>
         <p>Spune-ne bugetul și preferințele; propunem un meniu pe săptămână sau pe eveniment.</p>
-        <a class="btn btn-light" href="../contact/">Cere ofertă</a>
+        <div class="hero-actions" style="justify-content:center">
+          <a class="btn btn-light" href="../contact/">Cere ofertă</a>
+          <a class="btn btn-ghost" href="../#calculator">Calculează prețul</a>
+        </div>
       </div>
     </section>
   </main>
@@ -152,5 +184,10 @@
       <div class="footer-bottom"><span>© 2026 Mâncărescu Catering SRL</span><span>Prețuri fără TVA, pentru persoane juridice.</span></div>
     </div>
   </footer>
+
+  <div class="sticky-cta" aria-label="Acțiuni rapide">
+    <a href="../#calculator">Calculează prețul</a>
+    <a class="primary" href="../contact/">Cere ofertă</a>
+  </div>
 </body>
 </html>

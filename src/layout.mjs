@@ -164,6 +164,7 @@ ${page.body(p, crumbsHtml)}
       <div class="footer-bottom"><span>© ${new Date().getFullYear()} ${site.legalName}</span><span>Prețuri fără TVA, pentru persoane juridice.</span></div>
     </div>
   </footer>
+${page.path === "contact/" ? "" : stickyCta(p)}
 </body>
 </html>
 `;
@@ -233,6 +234,62 @@ export const ctaBand = (p, title = "Primești oferta în <em>aceeași zi</em> lu
         <span class="eyebrow">Cere ofertă</span>
         <h2>${title}</h2>
         <p>${text}</p>
-        <a class="btn btn-light" href="${p}contact/">Cere ofertă</a>
+        <div class="hero-actions" style="justify-content:center">
+          <a class="btn btn-light" href="${p}contact/">Cere ofertă</a>
+          <a class="btn btn-ghost" href="${p}#calculator">Calculează prețul</a>
+        </div>
       </div>
     </section>`;
+
+// Calculator de preț: estimare instantă din prețurile de listă, cu link spre formular precompletat.
+const calcOptions = [
+  ["Prânz pentru angajați", [["Prânz — meniu standard", 35, 10, true], ["Prânz — meniu complet", 45, 10, true]]],
+  ["Coffee break", [["Coffee break Simplu", 28, 15], ["Coffee break Business", 42, 15], ["Coffee break Conferință", 65, 15]]],
+  ["Finger food", [["Platou rece clasic", 55, 15], ["Platou mixt cald-rece", 72, 15], ["Platou vegetarian", 58, 15]]],
+  ["Eveniment corporate", [["Bufet cald", 95, 20, false, true], ["Grătar & street food", 85, 20, false, true], ["Cină servită la masă", 140, 20, false, true]]],
+];
+const lei = (n) => `${n.toLocaleString("ro-RO")} lei`;
+
+export function calculator(p) {
+  const options = calcOptions
+    .map(([service, items]) => `<optgroup label="${service}">${items
+      .map(([name, price, min, daily, from]) => `<option value="${price}" data-s="${service}" data-name="${name}" data-min="${min}"${daily ? " data-daily" : ""}${from ? " data-from" : ""}>${name} · ${from ? "de la " : ""}${price} lei</option>`)
+      .join("")}</optgroup>`)
+    .join("");
+  const base = `${p}contact/`;
+  return `
+    <section id="calculator" class="section-dark"><div class="wrap calc">
+      <div>
+        <span class="eyebrow">Calculator</span>
+        <h2>Cât te costă, <em>în zece secunde</em></h2>
+        <p>Alege formatul și numărul de persoane. Estimarea folosește prețurile de listă, fără TVA; oferta finală, cu meniul propus, o primești în aceeași zi lucrătoare.</p>
+        <ul class="calc-points">
+          <li>Livrare gratuită în București peste 500 lei fără TVA</li>
+          <li>Plătești doar porțiile livrate</li>
+          <li>Factură pe firmă, per livrare sau lunară</li>
+        </ul>
+      </div>
+      <form class="calc-form" data-calc onsubmit="return false">
+        <div><label for="calc-pachet">Ce comanzi</label><select id="calc-pachet" name="pachet">${options}</select></div>
+        <div class="row">
+          <div><label for="calc-pers">Persoane</label><input id="calc-pers" name="pers" type="number" min="1" max="2000" value="20" inputmode="numeric"></div>
+          <div data-days><label for="calc-zile">Zile pe lună</label><input id="calc-zile" name="zile" type="number" min="1" max="23" value="21" inputmode="numeric"></div>
+        </div>
+        <output class="calc-result" for="calc-pachet calc-pers calc-zile" aria-live="polite"><span class="calc-total">${lei(35 * 20 * 21)}</span><span class="calc-note">pe lună, 21 de zile · 35 lei de persoană, fără TVA</span></output>
+        <a class="btn btn-light" data-base="${base}" href="${base}">Cere oferta pentru această estimare</a>
+      </form>
+    </div></section>
+    <script>
+document.querySelectorAll("[data-calc]").forEach(function(f){var s=f.querySelector("select"),pe=f.elements.pers,z=f.elements.zile,dw=f.querySelector("[data-days]"),t=f.querySelector(".calc-total"),n=f.querySelector(".calc-note"),a=f.querySelector("a"),fmt=function(x){return x.toLocaleString("ro-RO")+" lei"};
+function run(){var o=s.selectedOptions[0],d=o.dataset,pr=+o.value,P=Math.max(1,Math.round(+pe.value||1)),D=Math.min(23,Math.max(1,Math.round(+z.value||1))),daily="daily" in d,tot=pr*P*(daily?D:1),min=+d.min;dw.hidden=!daily;
+t.textContent=("from" in d?"de la ":"")+fmt(tot);n.textContent=(daily?"pe lună, "+D+(D>19?" de":"")+" zile · ":"pe comandă · ")+pr+" lei de persoană, fără TVA"+(P<min?" · comanda minimă: "+min+" persoane":"");
+a.href=a.dataset.base+"?"+new URLSearchParams({serviciu:d.s,persoane:P,detalii:"Estimare din calculator: "+d.name+", "+P+" persoane"+(daily?", "+D+" zile pe lună":"")+", "+("from" in d?"":"aproximativ ")+t.textContent+" fără TVA."})}
+f.addEventListener("input",run);run()});
+    </script>`;
+}
+
+export const stickyCta = (p) => `
+  <div class="sticky-cta" aria-label="Acțiuni rapide">
+    <a href="${p}#calculator">Calculează prețul</a>
+    <a class="primary" href="${p}contact/">Cere ofertă</a>
+  </div>`;

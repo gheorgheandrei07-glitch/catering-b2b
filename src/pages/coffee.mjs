@@ -35,7 +35,7 @@ ${pageHero({
   eyebrow: "Ședințe · training-uri · conferințe",
   title: "Coffee break pentru <em>ședințe și conferințe</em>",
   lead: "Un coffee break pentru ședință costă de la 28 lei de persoană fără TVA și include cafea de specialitate, ceai, patiserie proaspătă și fructe, aranjate de noi la locație cu 30 de minute înainte de pauză.",
-  actions: `<a class="btn btn-light" href="${p}contact/">Cere ofertă</a>`,
+  actions: `<a class="btn btn-light" href="${p}contact/?serviciu=Coffee%20break">Cere ofertă</a><a class="btn btn-ghost" href="${p}#calculator">Calculează prețul</a>`,
 })}
 
     <section><div class="wrap">

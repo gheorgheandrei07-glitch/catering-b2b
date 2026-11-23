@@ -1,5 +1,5 @@
 import { site } from "../site.mjs";
-import { ctaBand, pageHero, photo } from "../layout.mjs";
+import { ctaBand, pageHero, photo, calculator } from "../layout.mjs";
 
 const path = "meniu/";
 const item = (dish, note, price, tag = "") => `<li><span class="dish">${dish}${tag ? `<span class="tag">${tag}</span>` : ""}<span class="note">${note}</span></span><span class="p">${price}</span></li>`;
@@ -92,5 +92,6 @@ ${sections
     <section style="padding-top:0"><div class="wrap">
       <p class="hint">Toate preparatele sunt etichetate cu alergenii principali (Regulamentul UE 1169/2011). Lista completă de alergeni și valori nutriționale o trimitem odată cu oferta.</p>
     </div></section>
+${calculator(p)}
 ${ctaBand(p, "Vrei un meniu <em>adaptat echipei</em> tale?", "Spune-ne bugetul și preferințele; propunem un meniu pe săptămână sau pe eveniment.", "garnish")}`,
 };
